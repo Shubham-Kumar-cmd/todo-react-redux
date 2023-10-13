@@ -4,13 +4,13 @@ import DispalyCount from './DispalyCount'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { deleteTodo } from '../redux/actions/Todo'
 
-const DisplayTodo = ({todos,deleteTodo}) => {
+const DisplayTodo = () => {
 
-    // //useSelector (it will extract the data)
-    // const todos=useSelector(state=>state.todos)
-    // // const currentUser=useSelector(state=>state.currentUser)
-    // //useDispatch (it will fire up action)
-    // const dispatch=useDispatch()
+    //useSelector (it will extract the data)
+    const todos=useSelector(state=>state.todos)
+    // const currentUser=useSelector(state=>state.currentUser)
+    //useDispatch (it will fire up action)
+    const dispatch=useDispatch()
 
     // hard code
     // const [todos,setTodos]=useState([
@@ -46,10 +46,10 @@ const DisplayTodo = ({todos,deleteTodo}) => {
                                             variant='danger'
                                             size='sm'
                                             onClick={event=>{
-                                                // dispatch(deleteTodo(todo.id))
-                                                deleteTodo(todo.id)
+                                                dispatch(deleteTodo(todo.id))
+                                                // deleteTodo(todo.id)
                                                 }}
-                                            >delete</Button>
+                                            >Delete</Button>
                                         </ListGroup.Item>
                                     ))
                                 }
@@ -62,16 +62,18 @@ const DisplayTodo = ({todos,deleteTodo}) => {
     )
 }
 
-const mapStateToProps=(state)=>{
-    return {todos:state.todos}
-}
+//old method
 
-const mapDispatchToProps=(dispatch)=>({
-    deleteTodo:(id)=>(dispatch(deleteTodo(id)))
-})
+// const mapStateToProps=(state)=>{
+//     return {todos:state.todos}
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(DisplayTodo)
-// export default DisplayTodo
+// const mapDispatchToProps=(dispatch)=>({
+//     deleteTodo:(id)=>(dispatch(deleteTodo(id)))
+// })
+
+// export default connect(mapStateToProps,mapDispatchToProps)(DisplayTodo)
+export default DisplayTodo
 
 //Alter
 //useSelector

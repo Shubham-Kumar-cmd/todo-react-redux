@@ -4,9 +4,9 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import DispalyCount from './DispalyCount';
 import { addTodo } from '../redux/actions/Todo';
 import { v4 } from 'uuid';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
-const AddTodo = ({addTodo}) => {
+const AddTodo = () => {
 
     const [todo,setTodo]=useState({
         title:'',
@@ -14,15 +14,17 @@ const AddTodo = ({addTodo}) => {
         id:''
     })
 
+    const dispatch=useDispatch()
+
     const handleSubmit=(event)=>{
         event.preventDefault();
         //add todo to store
-        addTodo({...todo,id:v4()})
+        // addTodo({...todo,id:v4()})
+        dispatch(addTodo({...todo,id:v4()}))
         console.log(todo);
         setTodo({
             title:'',
-            description:'',
-            id:''
+            description:''
         })
     }
 
@@ -67,10 +69,13 @@ const AddTodo = ({addTodo}) => {
     )
 }
 
-const mapStateToProps=(state)=>({})
+//old method
 
-const mapDispatchToProps=(dispatch)=>({
-    addTodo:(todo)=>(dispatch(addTodo(todo)))
-})
+// const mapStateToProps=(state)=>({})
 
-export default  connect(mapStateToProps,mapDispatchToProps) (AddTodo)
+// const mapDispatchToProps=(dispatch)=>({
+//     addTodo:(todo)=>(dispatch(addTodo(todo)))
+// })
+
+// export default  connect(mapStateToProps,mapDispatchToProps) (AddTodo)
+export default AddTodo
