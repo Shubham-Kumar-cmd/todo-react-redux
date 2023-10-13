@@ -4,8 +4,9 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import DispalyCount from './DispalyCount';
 import { addTodo } from '../redux/actions/Todo';
 import { v4 } from 'uuid';
+import { connect } from 'react-redux';
 
-const AddTodo = () => {
+const AddTodo = ({addTodo}) => {
 
     const [todo,setTodo]=useState({
         title:'',
@@ -66,4 +67,10 @@ const AddTodo = () => {
     )
 }
 
-export default AddTodo;
+const mapStateToProps=(state)=>({})
+
+const mapDispatchToProps=(dispatch)=>({
+    addTodo:(todo)=>(dispatch(addTodo(todo)))
+})
+
+export default  connect(mapStateToProps,mapDispatchToProps) (AddTodo)

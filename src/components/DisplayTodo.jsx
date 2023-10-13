@@ -1,11 +1,16 @@
 import React from 'react'
 import { Button, Card, Col, Container, ListGroup, Row } from 'react-bootstrap'
 import DispalyCount from './DispalyCount'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { deleteTodo } from '../redux/actions/Todo'
 
 const DisplayTodo = ({todos,deleteTodo}) => {
 
+    // //useSelector (it will extract the data)
+    // const todos=useSelector(state=>state.todos)
+    // // const currentUser=useSelector(state=>state.currentUser)
+    // //useDispatch (it will fire up action)
+    // const dispatch=useDispatch()
 
     // hard code
     // const [todos,setTodos]=useState([
@@ -40,7 +45,10 @@ const DisplayTodo = ({todos,deleteTodo}) => {
                                             <Button
                                             variant='danger'
                                             size='sm'
-                                            onClick={event=>{deleteTodo(todo.id)}}
+                                            onClick={event=>{
+                                                // dispatch(deleteTodo(todo.id))
+                                                deleteTodo(todo.id)
+                                                }}
                                             >delete</Button>
                                         </ListGroup.Item>
                                     ))
@@ -63,3 +71,8 @@ const mapDispatchToProps=(dispatch)=>({
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(DisplayTodo)
+// export default DisplayTodo
+
+//Alter
+//useSelector
+//useDispatch
